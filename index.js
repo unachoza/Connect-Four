@@ -2,15 +2,15 @@
 
 //make board
 
-let column = 7;
-let row = 6;
+// let column = 7;
+// let row = 6;
 
 let board = Array.from({ length: row }, () => Array.from({ length: column }, () => ""));
 let myGrid = [...Array(6)].map((e) => Array(6));
 
 //check win conditions
 
-let checkARow = (row) => {
+const doesRowHaveConnection = (row) => {
   console.log(`let's check this ${row}`);
   let connection = [];
   for (let i = 0; i < row.length - 1; i++) {
@@ -41,7 +41,7 @@ let checkARow = (row) => {
   return false;
 };
 
-let checkAColumn = (grid) => {
+const doesColumnHaveConnection = (grid) => {
   console.log(`let's check this column ${grid}`);
   let connection = [];
   for (let i = 0; i < row - 1; i++) {
@@ -72,24 +72,57 @@ let checkAColumn = (grid) => {
   return false;
 };
 
-let checkDiagonal = (grid) => {
-  console.log(`let's check this column ${grid}`);
+//seven lists of 6 items each
+let board2 = [
+  ["o", "o", "x", "x", "o", "o", "x"],
+  ["o", "o", "x", "o", "o", "o", "x"],
+  ["o", "x", "x", "o", "o", "o", "x"],
+  ["x", "x", "o", "o", "o", "x", "o"],
+  ["x", "o", "o", "o", "o", "x", "o"],
+  ["x", "o", "x", "x", "x", "x", "o"],
+];
+
+let col = 7;
+let row = 6;
+
+row = 2;
+col = 0;
+grid[row + 1][col + 1];
+
+const traverseDiagonal = (grid, row, col) => {
   let connection = [];
-  for (let i = 0; i < 11; i++) {
-    //check if slot is empty
-    //don't think it applies to diagonal; or like how to include /optimize?
-    if (grid[i][0] == "") return;
-    // add first coin to connection array
+  while (row > 0 && col < 7) {
+    console.log({ row }, { col });
+    if (grid[row][col] == "") {
+      console.log("empty slot; restart connection array");
+      connection = [];
+    }
     if (connection.length === 0) {
-      connection.push(grid[i][i]);
+      connection.push(grid[row][col]);
       console.log("connection starts over", { connection });
     }
-    let current = connection[connection.length - 1];
-    let next;
+    let current = grid[row][col];
+    let next = grid[row - 1][col + 1];
+    console.log({ current }, { next });
+    if (current != next) {
+      console.log("not the same; empty connection array");
+      connection = [];
+    } else {
+      connection.push(grid[row][col]);
+      console.log(`add${grid[row][col]} to connection`, { connection });
+    }
+    if (connection.length === 4) {
+      console.log("you connected 4");
+      return true;
+    }
+    row--, col++;
   }
+  console.log("end");
 };
 
-//array [row][column]
+const doesBoardHaveWinner = (board2, rowStart, colStart) => {
+  console.log("we checked everything");
+};
 
 let board1 = [
   ["o", "", "", "", "", "", ""],
@@ -99,14 +132,3 @@ let board1 = [
   ["x", "", "", "", "", "", ""],
   ["x", "", "", "", "", "", ""],
 ];
-
-//more refactor // need to start from the bottom of grid /reverse order the array
-
-//check diagnol
-//make github
-//how can player make a move to
-//remember the board
-//disable stuff
-//performance
-//memory
-//UI
