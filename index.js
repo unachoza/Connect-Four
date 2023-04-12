@@ -44,7 +44,7 @@ const doesRowHaveConnection = (row) => {
 const doesColumnHaveConnection = (grid) => {
   console.log(`let's check this column ${grid}`);
   let connection = [];
-  for (let i = 0; i < row - 1; i++) {
+  for (let i = grid.length; i < row - 1; i--) {
     //check if slot empty
     if (grid[i][0] == "") return;
     // add first coin to connection array
@@ -132,3 +132,22 @@ let board1 = [
   ["x", "", "", "", "", "", ""],
   ["x", "", "", "", "", "", ""],
 ];
+
+//board[row][col]
+const playGame = (user, col) => {
+  //check boared availability
+  //how many empty slots in x column,
+  //the same as checking if col has connection
+
+  //start at bottom of board
+  const bottomOfColumn = grid.length;
+};
+//more refactor // need to start from the bottom of grid /reverse order the array
+
+//check diagnol
+//how can player make a move to
+//remember the board
+//disable stuff
+//performance
+//memory
+//UI
