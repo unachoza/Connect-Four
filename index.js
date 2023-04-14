@@ -121,6 +121,9 @@ const traverseDiagonal = (grid, row, col) => {
 };
 
 const doesBoardHaveWinner = (board2, rowStart, colStart) => {
+  doesRowHaveConnection();
+  doesColumnHaveConnection();
+  traverseDiagonal();
   console.log("we checked everything");
 };
 
@@ -134,13 +137,24 @@ let board1 = [
 ];
 
 //board[row][col]
-const playGame = (user, col) => {
+const playGame = (user, col, board) => {
   //check boared availability
   //how many empty slots in x column,
-  //the same as checking if col has connection
-
-  //start at bottom of board
   const bottomOfColumn = grid.length;
+  if (board[col][board.height - 1] !== "") {
+    console.log(`no spaces availabe in column ${col}`);
+    return false;
+  }
+  //start at bottom of board
+  for (let i = board.height - 1; i > board.height; i--) {
+    if (board[col][i] === "") {
+      board[col][i] = user;
+    }
+  }
+  //check if any new connections made
+  doesBoardHaveWinner(board2, rowStart, colStart);
+  //return new board to have access to updated global variable
+  return board;
 };
 //more refactor // need to start from the bottom of grid /reverse order the array
 
