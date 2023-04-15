@@ -1,0 +1,83 @@
+/* Game board styles */
+table {
+  background-color: #0057a0;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+td {
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+}
+
+td.empty {
+  background-color: #eee;
+}
+
+td.red {
+  background-color: #ff4136;
+}
+
+td.yellow {
+  background-color: #ffdc00;
+}
+
+/* Game buttons styles */
+button {
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  margin: 20px auto;
+  padding: 10px 20px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+/* Player turn styles */
+#player-turn {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#player-turn span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+#red-turn {
+  background-color: red;
+}
+
+#yellow-turn {
+  background-color: rgb(208, 208, 44);
+  color: black;
+}
+
+/* Header and text styles */
+header {
+  text-align: center;
+}
+
+h1 {
+  font-family: "Helvetica";
+  font-size: 3rem;
+  margin-top: 20px;
+}
+
+p {
+  font-family: "Helvetica";
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
