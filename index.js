@@ -5,8 +5,39 @@
 // let column = 7;
 // let row = 6;
 
-let board = Array.from({ length: row }, () => Array.from({ length: column }, () => ""));
-let myGrid = [...Array(6)].map((e) => Array(6));
+// let board = Array.from({ length: row }, () => Array.from({ length: column }, () => ""));
+// let myGrid = [...Array(6)].map((e) => Array(6));
+
+// add eventlisteners to game rows
+const addRowEventListeners = () => {
+  for (let i = 0; i <= 6; i++) {
+    let currentRowId = `row${i}`;
+    const row = document.getElementById(`${currentRowId}`);
+    row.addEventListener("click", () => {
+      handlePlayerMove("red", row);
+    });
+  }
+};
+
+//how can player make a move to
+window.onload = () => {
+  setTimeout(() => {
+    addRowEventListeners();
+  }, 100);
+};
+
+//create token
+const createToken = (locationElementId) => {
+  // create a new div element
+  const newToken = document.createElement("div");
+  newToken.classList.add("circle");
+  locationElementId.appendChild(newToken);
+  return newToken;
+};
+
+const handlePlayerMove = (player, locationElementId) => {
+  createToken(locationElementId).classList.add(player);
+};
 
 //check win conditions
 
@@ -159,7 +190,7 @@ const playGame = (user, col, board) => {
 //more refactor // need to start from the bottom of grid /reverse order the array
 
 //check diagnol
-//how can player make a move to
+
 //remember the board
 //disable stuff
 //performance
